@@ -34,6 +34,6 @@ plot.pixel_art = function(obj) {
 }
 
 
-# Plotting process -------------------------
-fl = 'data/rose.xlsx'
-read.pixel_art(file = fl, sheet = 1) %>% plot.pixel_art()
+# # Plotting process -------------------------
+# fl = 'data/rose.xlsx'
+# read.pixel_art(file = fl, sheet = 1) %>% plot.pixel_art()
