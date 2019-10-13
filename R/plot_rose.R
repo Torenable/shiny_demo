@@ -18,7 +18,7 @@ read.pixel_art = function(file, sheet = 1) {
 	    apply(1, function(x) invisible(art_mx[art_shape['nrow'] - x['r'], x['c']] <<- x['v'])) # flipped
 
 	# Prepare the color
-	fmt = tidyxl::xlsx_formats(fl)
+	fmt = tidyxl::xlsx_formats(file)
 	rgb = fmt$local$fill$patternFill$fgColor$rgb[dat_obj$local_format_id %>% unique()] %>%
 	    stringr::str_replace(pattern = '^FF', '#')
 
@@ -35,5 +35,6 @@ plot.pixel_art = function(obj) {
 
 
 # # Plotting process -------------------------
-# fl = 'data/rose.xlsx'
-# read.pixel_art(file = fl, sheet = 1) %>% plot.pixel_art()
+fl = 'data/rose.xlsx'
+rose_obj = read.pixel_art(file = fl, sheet = 1) 
+# rose_obj %>% plot.pixel_art()

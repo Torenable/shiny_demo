@@ -25,7 +25,8 @@ ui = navbarPage('Demo Charts',
 	tabPanel("Pie Chart", plotly::plotlyOutput('expenditures')),
 	tabPanel("Multi-level Pie Chart", plotly::plotlyOutput('ball_games')),
 	tabPanel("Radar Chart", plotly::plotlyOutput('beer')),
-	tabPanel("Sankey Diagram", plotly::plotlyOutput('energy'))
+	tabPanel("Sankey Diagram", plotly::plotlyOutput('energy')),
+	tabPanel("Pixel Art", plotOutput('pixel_rose'))
 )
 
 # Define server side logic
