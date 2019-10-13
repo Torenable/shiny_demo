@@ -78,26 +78,28 @@ plotly_beer = plot_ly(
 
 
 # Sankey Diagram ---------------------------------------------------------
-dat_energy = 'https://raw.githubusercontent.com/plotly/plotly.js/master/test/image/mocks/sankey_energy.json' %>%
-	jsonlite::read_json()
+# dat_energy = 'https://raw.githubusercontent.com/plotly/plotly.js/master/test/image/mocks/sankey_energy.json' %>%
+# 	jsonlite::read_json()
 
-nodes = list(
-	label = dat_energy$data[[1]]$node$label
-	, color  = dat_energy$data[[1]]$node$color
-	, pad = 15
-	, thickness = 15
-	, line = list(
-		color = 'black'
-		, width = 0.5
-	)
-)
-links = list(
-	source = dat_energy$data[[1]]$link$source
-	, target = dat_energy$data[[1]]$link$target
-	, value = dat_energy$data[[1]]$link$value
-	, label = dat_energy$data[[1]]$link$label
-)
+# nodes = list(
+# 	label = dat_energy$data[[1]]$node$label
+# 	, color  = dat_energy$data[[1]]$node$color
+# 	, pad = 15
+# 	, thickness = 15
+# 	, line = list(
+# 		color = 'black'
+# 		, width = 0.5
+# 	)
+# )
+# links = list(
+# 	source = dat_energy$data[[1]]$link$source
+# 	, target = dat_energy$data[[1]]$link$target
+# 	, value = dat_energy$data[[1]]$link$value
+# 	, label = dat_energy$data[[1]]$link$label
+# )
+# save(dat_energy, nodes, links, file = 'data/dat_energy.RData')
 
+load(file = 'data/dat_energy.RData')
 plotly_energy = plot_ly(
 	type = "sankey",
 	domain = list(
