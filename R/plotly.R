@@ -6,7 +6,7 @@ library(plotly)
 # Scatter plot / Bubble
 dat_gaps = readxl::read_xlsx('data/data_sets.xlsx', sheet = 'EarningGaps')
 
-dat_gaps %>%
+plotly_earning_gaps = dat_gaps %>%
 	plot_ly(x = ~Women, y = ~Men, type = 'scatter', mode = 'markers', size = ~Gap, color = ~State, colors = 'Paired',
 		sizes = c(10, 50),
 		marker = list(opacity = 0.5, sizemode = 'diameter'),
@@ -23,7 +23,7 @@ dat_gaps %>%
 # Pie Chart
 dat_expenditures = readxl::read_xlsx('data/data_sets.xlsx', sheet = 'Expenditures')
 
-dat_expenditures %>%
+plotly_expnditures = dat_expenditures %>%
 	plot_ly(labels = ~Categorie, values = ~X1960, type = 'pie',
 		textposition = 'inside',
 		textinfo = 'label+percent',
@@ -44,7 +44,7 @@ dat_expenditures %>%
 # Sunburst Chart / Multi-level Pie Chart --------------------------------
 dat_ballgames = readxl::read_xlsx('data/data_sets.xlsx', sheet = 'BallGames')
 
-dat_ballgames %>%
+plotly_ball_games = dat_ballgames %>%
     plot_ly(ids = ~ids, labels = ~labels, parents = ~parents, type = 'sunburst') %>%
     layout(title = 'Ball Games in Continents')
 
@@ -52,7 +52,7 @@ dat_ballgames %>%
 # Radar Chart -----------------------------------------------------------
 dat_beer = readxl::read_xlsx('data/data_sets.xlsx', sheet = 'Beer')
 
-plot_ly(
+plotly_beer = plot_ly(
 	type = 'scatterpolar',
 	mode = 'lines',
 	fill = 'toself'
@@ -98,7 +98,7 @@ links = list(
 	, label = dat_energy$data[[1]]$link$label
 )
 
-plot_ly(
+plotly_energy = plot_ly(
 	type = "sankey",
 	domain = list(
 		x =  c(0, 1),
