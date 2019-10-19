@@ -7,15 +7,10 @@ read.pixel_art = function(file, sheet = 1) {
 
 	# Prepare the data
 	art_shape = c(nrow = max(dat_obj$row), ncol = max(dat_obj$col))
-	art_mx = matrix(NA, nrow = art_shape['nrow'], ncol = art_shape['ncol'])
+	art_mx    = rep(NA, art_shape['nrow'] * art_shape['ncol'])
 
-	tibble(
-	    r = dat_obj$row
-	    , c = dat_obj$col
-	    , v = dat_obj$local_format_id # 2: black; 3: red; 4: green
-	) %>%
-	    # apply(1, function(x) invisible(gf[x['r'], x['c']] <<- x['v']))
-	    apply(1, function(x) invisible(art_mx[art_shape['nrow'] - x['r'], x['c']] <<- x['v'])) # flipped
+	idx = (art_shape['nrow'] - dat_obj$row) * art_shape['ncol'] + dat_obj$col
+	art_mx[idx] = dat_obj$local_format_id
 
 	# Prepare the color
 	fmt = tidyxl::xlsx_formats(file)
@@ -24,7 +19,7 @@ read.pixel_art = function(file, sheet = 1) {
 
 	# Return the art
 	list(
-		data = art_mx
+		data = art_mx %>% matrix(nrow = art_shape['nrow'], ncol = art_shape['ncol'], byrow = TRUE)
 		, color = rgb
 	)
 }
